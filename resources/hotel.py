@@ -67,7 +67,6 @@ class Hotel(Resource):
         hoteis.append(novo_hotel)
         return novo_hotel, 201 # created criado
 
-
     def delete(self, hotel_id):
         global hoteis
         hoteis = [hotel for hotel in hoteis if hotel['hotel_id'] != hotel_id]
