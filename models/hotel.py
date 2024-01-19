@@ -22,7 +22,7 @@ class HotelModel(banco.Model):
             'nome': self.nome,
             'estrelas': self.estrelas,
             'diaria': self.diaria,
-            'cidade': self.diaria
+            'cidade': self.cidade
         }
     
     @classmethod
