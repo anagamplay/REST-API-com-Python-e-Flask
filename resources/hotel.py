@@ -37,9 +37,9 @@ class Hotel(Resource):
     argumentos.add_argument('cidade')
 
     def get(self, hotel_id):
-        hotel = Hotel.find_hotel(hotel_id)
+        hotel = HotelModel.find_hotel(hotel_id)
         if hotel:
-            return hotel
+            return hotel.json()
         return {'message': 'Hotel not found.'}, 404 # not found
     
     def post(self, hotel_id):
@@ -57,7 +57,7 @@ class Hotel(Resource):
         hotel_objeto = HotelModel(hotel_id, **dados)
         novo_hotel = hotel_objeto.json()
         hotel = Hotel.find_hotel(hotel_id)
-        
+
         if hotel:
             hotel.update(novo_hotel)
             return novo_hotel, 200 # OK
