@@ -41,9 +41,19 @@ path_params.add_argument('offset', type=float)
 
 class Hoteis(Resource):
     def get(self):
+        connection = sqlite3.connect('banco.db')
+        cursor = connection.cursor()
 
         dados = path_params.parse_args()
         dados_validos = {chave:dados[chave] for chave in dados if dados[chave] is not None}
+        parametros = normalize_path_params(**dados_validos)
+
+        if parametros.get('cidade'):
+            consulta = "SELECT * FROM hoteis \
+                WHERE (estrelas > ? and estrelas < ?) \
+                and (diaria > ? and diaria < ?) \
+                LIMIT ? OFFSET ?"
+
         return {'hoteis': [hotel.json() for hotel in HotelModel.query.all()]}
     
 class Hotel(Resource):
