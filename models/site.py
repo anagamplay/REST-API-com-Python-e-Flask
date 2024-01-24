@@ -43,7 +43,7 @@ class SiteModel(banco.Model):
     
     def delete_site(self):
         # deletando todos hoteis associados ao site
-        [hotel.delete() for hotel in self.hoteis]
+        [hotel.delete_hotel() for hotel in self.hoteis]
         # deletando site
         banco.session.delete(self)
         banco.session.commit()

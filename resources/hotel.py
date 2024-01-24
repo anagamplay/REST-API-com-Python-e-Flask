@@ -68,7 +68,7 @@ class Hotel(Resource):
         hotel = HotelModel(hotel_id, **dados)
 
         if not SiteModel.find_by_id(dados['site_id']):
-            return {'message': 'The hotel most be associated to a valid site di.'}
+            return {'message': 'The hotel most be associated to a valid site id.'}
 
         try:
             hotel.save_hotel()
