@@ -36,7 +36,8 @@ class Hoteis(Resource):
             'nome': linha[1],
             'estrelas': linha[2],
             'diaria': linha[3],
-            'cidade': linha[4]
+            'cidade': linha[4],
+            'site_id': linha[5]
             })
 
         connection.close()
@@ -49,6 +50,7 @@ class Hotel(Resource):
     argumentos.add_argument('estrelas', type=float, required=True, help="The field 'estrelas' cannot be left blank.")
     argumentos.add_argument('diaria')
     argumentos.add_argument('cidade')
+    argumentos.add_argument('site_id', type=int, required=True, help='Every hotel needs to be linked with a site')
 
     def get(self, hotel_id):
         hotel = HotelModel.find_hotel(hotel_id)
