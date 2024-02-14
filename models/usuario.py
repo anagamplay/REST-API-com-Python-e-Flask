@@ -18,9 +18,6 @@ class UserModel(banco.Model):
     
     def send_confirmation_email(self):
         link = request.url_root[:-1]  + url_for('userconfirm', user_id=self.user_id) 
-        # slicing de strings
-        request.url_root[:-1] # http://127.0.0.1:5000/  
-        url_for('userconfirm', user_id=self.user_id) # /confimacao/{user_id}
 
     def json(self):
         return {
