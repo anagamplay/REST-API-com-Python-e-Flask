@@ -52,6 +52,13 @@ class UserModel(banco.Model):
         return None
     
     @classmethod
+    def find_by_email(cls, email):
+        user = cls.query.filter_by(email=email).first()
+        if user:
+            return user
+        return None
+    
+    @classmethod
     def find_by_login(cls, login):
         user = cls.query.filter_by(login=login).first()
         if user:
