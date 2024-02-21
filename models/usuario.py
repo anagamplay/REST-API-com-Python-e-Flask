@@ -3,8 +3,8 @@ from flask import request, url_for
 from requests import post
 
 MAILGUN_DOMAIN = 'sandbox1fb8f6fb8e4240e5bfabf019dc8bc6e1.mailgun.org'
-MAILGUN_API_KEY = '0411ea0bc2bbc95806ebe1da599b9778-8c8e5529-c35baef7'
-ROM_TITLE = 'NO-REPLY'
+MAILGUN_API_KEY = '8c8e5529-c35baef7'
+FROM_TITLE = 'NO-REPLY'
 FROM_EMAIL = 'no-reply@restapi.com'
 
 class UserModel(banco.Model):
@@ -23,6 +23,7 @@ class UserModel(banco.Model):
         self.ativado = ativado
     
     def send_confirmation_email(self):
+        print("Alou")
         link = request.url_root[:-1]  + url_for('userconfirm', user_id=self.user_id) 
         return post('https://api.mailgun.net/v3/{}/messages'.format(MAILGUN_DOMAIN),
                     auth=('api', MAILGUN_API_KEY),
